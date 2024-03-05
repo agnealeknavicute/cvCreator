@@ -14,12 +14,14 @@ interface IPersonalInfoProps {
     address: string;
     email: string;
     phone: number | null;
+    gitHub: string;
   };
   updateName: (name: string) => void;
   updateLastName: (lastName: string) => void;
   updateAddress: (address: string) => void;
   updateEmail: (email: string) => void;
   updatePhone: (number: number) => void;
+  updateGitHub: (gitHub: string) => void;
 }
 const PersonalInfo = (props: IPersonalInfoProps) => {
   return (
@@ -62,6 +64,16 @@ const PersonalInfo = (props: IPersonalInfoProps) => {
             value={props.contacts.email}
             onChange={(event) => {
               props.updateEmail(event.currentTarget.value);
+            }}
+            type="text"
+          />
+        </Box>
+        <Box>
+          <Input
+            placeholder="GitHub link"
+            value={props.contacts.gitHub}
+            onChange={(event) => {
+              props.updateGitHub(event.currentTarget.value);
             }}
             type="text"
           />

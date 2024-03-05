@@ -9,10 +9,12 @@ import {
   updateEducation,
   updateEmail,
   updateExperience,
+  updateGitHub,
   updateLanguage,
   updateLastName,
   updateName,
   updatePhone,
+  updateProject,
   updateSkills,
 } from "../state/cvInfo/cvInfoSlice";
 import EducationOrExperience from "./EducationOrExperience";
@@ -21,6 +23,7 @@ import Skills from "./Skills";
 import Summary from "./Summary";
 import Languages from "./Languages";
 import CvDownload from "./CV/CvDownload";
+import { Projects } from "./Projects";
 
 function CvPage() {
   const name = useSelector((state: RootState) => state.cvInfo.name);
@@ -29,6 +32,7 @@ function CvPage() {
   const education = useSelector((state: RootState) => state.cvInfo.education);
   const experience = useSelector((state: RootState) => state.cvInfo.experience);
   const skills = useSelector((state: RootState) => state.cvInfo.skills);
+  const projects = useSelector((state: RootState) => state.cvInfo.projects);
   const description = useSelector(
     (state: RootState) => state.cvInfo.description
   );
@@ -49,11 +53,18 @@ function CvPage() {
         updateAddress={(address: string) => dispatch(updateAddress(address))}
         updateEmail={(email: string) => dispatch(updateEmail(email))}
         updatePhone={(number: number) => dispatch(updatePhone(number))}
+        updateGitHub={(gitHub: string) => dispatch(updateGitHub(gitHub))}
       />
       <Summary
         description={description}
         updateDescription={(newDescription: string) =>
           dispatch(updateDescription(newDescription))
+        }
+      />
+      <Projects
+        projects={projects}
+        updateProject={(proj: (typeof projects)[0]) =>
+          dispatch(updateProject(proj))
         }
       />
       <EducationOrExperience

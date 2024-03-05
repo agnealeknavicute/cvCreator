@@ -12,6 +12,8 @@ const CvDownload = () => {
   const education = useSelector((state: RootState) => state.cvInfo.education);
   const experience = useSelector((state: RootState) => state.cvInfo.experience);
   const skills = useSelector((state: RootState) => state.cvInfo.skills);
+  const projects = useSelector((state: RootState) => state.cvInfo.projects);
+
   const description = useSelector(
     (state: RootState) => state.cvInfo.description
   );
@@ -31,6 +33,7 @@ const CvDownload = () => {
         skills={skills}
         description={description}
         languages={languages}
+        projects={projects}
       />
     );
   }, [

@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
   contactInfo: { fontSize: "13px", paddingTop: "10px" },
   subTitle: {
-    fontSize: "14px",
+    fontSize: "16px",
     color: "#0059b3",
     fontFamily: "Times-Bold",
     padding: "0 0 8px",
@@ -46,13 +46,32 @@ const MyDocument = (props: Omit<ICvInfo, "photo">) => {
           </Text>
           <Text style={styles.contactInfo}>
             {props.contacts.address} | {props.contacts.phone} |{" "}
-            {props.contacts.email}
+            {props.contacts.email} | {props.contacts.gitHub}
           </Text>
         </View>
         <View style={styles.subSection}>
           <Text style={styles.subTitle}>Summary</Text>
           <Text style={[{ fontSize: "14" }]}>{props.description}</Text>
         </View>
+        {props.projects.length > 0 && (
+          <View style={styles.subSection}>
+            <Text style={styles.subTitle}>Projects</Text>
+            {props.projects.map((project) => {
+              return (
+                <View style={[{ marginBottom: "7" }]}>
+                  <Text
+                    style={[{ fontSize: "16px" }, { fontFamily: "Times-Bold" }]}
+                  >
+                    {project.title}
+                  </Text>
+                  <Text style={[{ fontSize: "13" }, { padding: "5 0" }]}>
+                    {project.description}
+                  </Text>
+                </View>
+              );
+            })}
+          </View>
+        )}
         {props.education.length > 0 && (
           <View style={styles.subSection}>
             <Text style={styles.subTitle}>Education</Text>
@@ -60,7 +79,11 @@ const MyDocument = (props: Omit<ICvInfo, "photo">) => {
               return (
                 <View style={[{ marginBottom: "7" }]}>
                   <Text
-                    style={[{ fontSize: "13px" }, { fontFamily: "Times-Bold" }]}
+                    style={[
+                      { fontSize: "13px" },
+                      { backgroundColor: "#e6eeff" },
+                      { fontFamily: "Times-Bold" },
+                    ]}
                   >
                     {ed.degree}{" "}
                     <Text style={[{ fontFamily: "Times-Roman" }]}>

@@ -20,6 +20,11 @@ interface language {
   level: string;
   id: string;
 }
+interface project {
+  title: string;
+  description: string;
+  id: string;
+}
 
 export interface ICvInfo {
   name: string;
@@ -29,12 +34,14 @@ export interface ICvInfo {
     address: string;
     phone: number | null;
     email: string;
+    gitHub: string;
   };
   experience: activeEx[];
   education: activeEd[];
   description: string;
   skills: skill[];
   languages: language[];
+  projects: project[];
 }
 
 const initialState: ICvInfo = {
@@ -45,12 +52,14 @@ const initialState: ICvInfo = {
     address: "",
     phone: null,
     email: "",
+    gitHub: "",
   },
   experience: [],
   education: [],
   description: "",
   skills: [],
   languages: [],
+  projects: [],
 };
 
 const cvInfoSlice = createSlice({
@@ -66,11 +75,13 @@ const cvInfoSlice = createSlice({
     updatePhone: (state, action: PayloadAction<number>) => {
       state.contacts.phone = action.payload;
     },
+    updateGitHub: (state, action: PayloadAction<string>) => {
+      state.contacts.gitHub = action.payload;
+    },
     updateAddress: (state, action: PayloadAction<string>) => {
       state.contacts.address = action.payload;
     },
     updateEmail: (state, action: PayloadAction<string>) => {
-      debugger;
       state.contacts.email = action.payload;
     },
     updateEducation: (state, action: PayloadAction<activeEd>) => {
@@ -93,6 +104,9 @@ const cvInfoSlice = createSlice({
     updateLanguage: (state, action: PayloadAction<language>) => {
       state.languages.push(action.payload);
     },
+    updateProject: (state, action: PayloadAction<project>) => {
+      state.projects.push(action.payload);
+    },
   },
 });
 
@@ -101,6 +115,7 @@ export const {
   updateLastName,
   updateAddress,
   updateEmail,
+  updateGitHub,
   updatePhone,
   updateEducation,
   updateExperience,
@@ -108,6 +123,7 @@ export const {
   updateDescription,
   deleteSkill,
   updateLanguage,
+  updateProject,
 } = cvInfoSlice.actions;
 
 export default cvInfoSlice.reducer;
